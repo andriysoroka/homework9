@@ -1,9 +1,10 @@
 var ask = confirm('Чи бажаєте почати гру?'),
 	prise = 10,
+	randomNumber = Math.ceil(Math.random()*5),
+	isContinue = true,
 	askNumber, askContinue, randomNumber;
 
-for(let i = 0; i < 1000; i++) {
-	randomNumber = Math.ceil(Math.random()*5);
+do {
 	if(ask) {
 		askNumber = parseInt(prompt("Супер! Тоді почнімо! У вас є лише 3 спроби! Введіть випадкове число", askNumber));
 	} else {
@@ -14,9 +15,10 @@ for(let i = 0; i < 1000; i++) {
 		askContinue = confirm("Бажаєте продовжити?");
 			if(askContinue) {
 				prise *= 3;
-				i++;
+				continue;
 			} else {
 				alert(`ваш виграш становать ${prise}$`)
+				isContinue = false;
 				break;
 			}
 	} else {
@@ -26,9 +28,10 @@ for(let i = 0; i < 1000; i++) {
 				askContinue = confirm("Бажаєте продовжити?");
 					if(askContinue) {
 						prise *= 3;
-						break;
+						continue;
 					} else {
 						alert(`Ваш виграш становить ${prise / 2}`)
+						isContinue = false;
 						break;
 					}
 			} else {
@@ -41,6 +44,7 @@ for(let i = 0; i < 1000; i++) {
 						continue;
 					} else {
 						alert(`Ваш виграш становить ${prise / 5}`)
+						isContinue = false;
 						break;
 					}
 				}
@@ -48,13 +52,15 @@ for(let i = 0; i < 1000; i++) {
 		alert (`Ваш виграш становить - 0$`);
 		askContinue = confirm("Бажаєте продовжити?"); 
 			if (askContinue) {
-				i++;
+				continue;
 			} else {
 				alert(`Допобачення!`);
-				break;
+				isContinue = false;
 			}
 	}
-	randomNumber = Math.ceil(Math.random()*5)*2;
+	randomNumber = randomNumber * 2;
 	console.log(randomNumber);
-	console.log(askNumber);
-}
+} while(isContinue);
+console.log(ask);
+console.log(randomNumber);
+console.log(askNumber);
